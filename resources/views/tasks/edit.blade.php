@@ -14,14 +14,14 @@
     @csrf
     @method('PUT')
 
-    <input class='textarea' type="text" name="value" value="{{  $task->value }}" placeholder="description">
+    <input class='textarea' type="text" name="value" value="{{( $task->value) }}" placeholder="description">
     @error('value')
         <span style="color: red">Please input something</span>
     @enderror
 
     <button class='button' type="submit">Update</button>
 </form>
-    @include('include.foot')
+    {{-- @include('include.foot') --}}
 
 </body>
 </html>

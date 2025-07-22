@@ -36,7 +36,7 @@
         <span>already have an account?</span><br>
         <button class="button" onclick="window.location.href='{{ route('login') }}'">Login</button><br>
     </div>
-    @include('include.foot')
+    {{-- @include('include.foot') --}}
 </body>
 
 </html>

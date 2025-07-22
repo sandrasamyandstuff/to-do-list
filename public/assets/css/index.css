@@ -10,14 +10,19 @@ background-color:purple
  padding: 10px;
     color:whitesmoke;
  text-align: center;
- border-color: rgb(245, 245, 245);
+
+
+
 }
+
+
 .button{
 
 border-color:purple;
 border-style: solid;
 background-color:transparent ;
-  color:whitesmoke
+  color:whitesmoke;
+
 }
 .tasksbuttons
 {
@@ -25,15 +30,22 @@ background-color:transparent ;
     flex-direction: row;
     padding-bottom: 10px;
     font-size: medium;
+    position: relative;
 
 }
 .tasks{
     border-color: whitesmoke;
     border-style: solid;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
     border-radius: 10px;
     color: whitesmoke;
-    font-size:larger;
+    font-size:10px;
+    margin-top: 20px;
+    padding: 20px;
+    height: 150px;
+    /* position: relative; */
+
+
 }
 .button
 {

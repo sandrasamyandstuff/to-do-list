@@ -11,7 +11,10 @@ nav{
   border-radius: 9px;
   padding: 5px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index:1;
+  ;
 color: #fff;
 
 
@@ -20,6 +23,7 @@ color: #fff;
 .links
 {
  color: #fff;
+     text-decoration: none;
 }
 
 .links:hover

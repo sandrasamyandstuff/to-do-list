@@ -6,6 +6,8 @@ use App\Models\Tasks;
 use App\Http\Requests\StoreTasksRequest;
 use App\Http\Requests\UpdateTasksRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class TasksController extends Controller
 {
@@ -14,8 +16,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-
-        $tasks = Tasks::all();
+         session(['from_index' => true]);
+        $tasks = Tasks::where('user_id', Auth::id())->get();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -33,8 +35,11 @@ class TasksController extends Controller
     public function store(StoreTasksRequest $request)
     {
         $data = $request->validated();
-        Tasks::create($data);
-        return redirect()->route('index')->with('success', 'created');
+        Tasks::create([
+            'value' => $data['value'],
+            'user_id' => Auth::id()
+        ]);
+        return redirect()->route('index')->with('success', 'created successfully');
     }
 
     /**
@@ -59,14 +64,20 @@ class TasksController extends Controller
      */
     public function update(UpdateTasksRequest $request, Tasks $task)
     {
-
         $data = $request->validated();
 
         $task->update([
             'value' => $data['value']
         ]);
 
-        return redirect()->route('index')->with('success', 'updated');
+
+    if (session('from_index')) {
+            return redirect()->route('index')->with('success', 'updated successfully');
+        } else if ($task->completed_at) {
+            return redirect()->route('showcomp')->with('success', 'updated successfully');
+        } else {
+            return redirect()->route('showincomp')->with('success', 'updated successfully');
+        }
     }
 
 
@@ -74,13 +85,14 @@ class TasksController extends Controller
     {
         $task->delete();
 
-        return redirect()->route('index')->with('success', 'deleted');
+        return redirect()->back()->with('success', 'deleted successfully');
     }
 
 
 
     public function complete(Tasks $task)
     {
+
         $task->completed_at = Carbon::now();
         $task->save();
         return redirect()->back()->with('success', 'Task completed!');
@@ -88,22 +100,27 @@ class TasksController extends Controller
 
     public function incomplete(Tasks $task)
     {
+
         $task->completed_at = null;
         $task->save();
         return redirect()->back()->with('success', 'Task unmarked');
     }
 
-       public function showcomplete()
+    public function showcomplete()
     {
-       $tasks = Tasks::whereNotNull('completed_at')->get();
-         return view('tasks.completed', compact('tasks'));
-
-
+         session(['from_index' => false]);
+        $tasks = Tasks::where('user_id', Auth::id())
+              ->whereNotNull('completed_at')
+              ->get();
+        return view('tasks.completed', compact('tasks'));
     }
 
     public function showincomplete()
     {
-        $tasks=Tasks::where('completed_at',null)->get();
-         return view('tasks.incompleted', compact('tasks'));
+        session(['from_index' => false]);
+        $tasks = Tasks::where('user_id', Auth::id())
+              ->whereNull('completed_at')
+              ->get();
+        return view('tasks.incompleted', compact('tasks'));
     }
 }

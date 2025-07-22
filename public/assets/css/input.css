@@ -10,6 +10,7 @@
 {
     background-color: purple;
 
+
 }
 .allcontent
 
@@ -60,5 +61,14 @@ background-color: whitesmoke;
 height: 50px;
 width: 400px;
 
-margin:10px;
+margin:20px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+form
+{
+        display: flex;
+justify-content: center;
+align-items: center;
 }

@@ -11,6 +11,11 @@
 <body class ='body'>
 
     @include('include.nav')
+        @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <div class='head'>
         <h1>WELCOME</h1>
         <h2>Here are all your tasks!</h2>
@@ -20,20 +25,20 @@
 
     @foreach ($tasks as $task)
         <div class ='tasks'>
-            <p style="margin: 10px">{{ $task->value }}</p>
+            <p style="font-size: 40px">{{ $task->value }}</p>
 
             <div class ='tasksbuttons'><br>
 
 
                 @if ($task->completed_at == null)
-                    <form action= "{{ route('complete', $task->id) }}", method="POST">
+                    <form action= "{{ route('complete', $task->id )}}", method="POST">
                         @method('patch')
                         @csrf
                         <button class='button' type="submit">Mark as Completed</button>
                     </form>
                 @else
 
-                   <span style="margin: 10px">completed at {{ $task->completed_at }}</span>
+                   <br><span style="margin: 10px">completed at {{ $task->completed_at }}</span>
                     <form action= "{{ route('incomplete', $task->id) }}" method="POST">
                         @method('patch')
                         @csrf
@@ -46,12 +51,12 @@
 
 
 
-                <form action="{{ route('destroy', $task->id) }}" , method="POST">
+               <br> <form action="{{ route('destroy', $task->id) }}" , method="POST">
                     @method('delete')
                     @csrf
                     <button class='button' type="submit">Delete</button>
                 </form>
-                <button class="button" onclick="window.location='{{ route('edit', $task->id) }}'"> Edit</button>
+                <button class="button" onclick="window.location='{{ route('edit',  $task->id )}}'"> Edit</button>
             </div>
         </div>
     @endforeach
@@ -68,7 +73,7 @@
 
 
 
-    @include('include.foot')
+    {{-- @include('include.foot') --}}
 
 </body>
 

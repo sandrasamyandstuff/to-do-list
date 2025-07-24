@@ -19,13 +19,12 @@
             <form action="{{ route('auth.login') }}" method="post">
                 @csrf
                 <input class="textarea" type="email" name="email" id="email" placeholder="User Email">
-                @error('email')
-                    <span style='color:red;'>wrong email</span>
-                @enderror
+
                 <input class="textarea" type="password" name="password" id="password" placeholder="User Password">
-                @error('password')
-                    <span style='color:red;'>wrong password</span>
-                @enderror
+                                @if ($errors->any())
+                 <span style='color:red;'>wrong email or password</span>
+                 @endif
+
                 <button class='button' type="submit">sign in</button>
             </form>
         </div>

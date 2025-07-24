@@ -23,7 +23,7 @@
     @enderror
     <button class='button' type="submit">create</button>
 </form>
-    {{-- @include('include.foot') --}}
+    @include('include.foot')
 </body>
 </html>
 

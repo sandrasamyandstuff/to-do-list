@@ -21,8 +21,8 @@
                 <input class="textarea" type="email" name="email" id="email" placeholder="User Email">
 
                 <input class="textarea" type="password" name="password" id="password" placeholder="User Password">
-                                @if ($errors->any())
-                 <span style='color:red;'>wrong email or password</span>
+                @if ($errors->any())
+                 <span style='color:red'>{{$errors}}</span>
                  @endif
 
                 <button class='button' type="submit">sign in</button>

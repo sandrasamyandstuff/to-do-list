@@ -27,6 +27,13 @@
     </div>
 
 
+@if($tasks->isEmpty())
+
+    <p class ='empty'> you have no tasks!</p>
+
+
+
+@else
 
     @foreach ($tasks as $task)
         <div class='tasks'>
@@ -50,8 +57,8 @@
             </div>
         </div>
     @endforeach
-
-    {{-- @include('include.foot') --}}
+@endif
+     @include('include.foot')
 
 </body>
 

@@ -43,7 +43,6 @@ background-color:transparent ;
     margin-top: 20px;
     padding: 20px;
     height: 150px;
-    /* position: relative; */
 
 
 }
@@ -60,4 +59,9 @@ background-color:transparent ;
  color: purple;
 }
 
-
+.empty
+{
+    height: 300px;
+    color: whitesmoke;
+    text-align: center;
+}

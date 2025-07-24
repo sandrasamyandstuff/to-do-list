@@ -34,7 +34,7 @@
     </div>
 
 
-    {{-- @include('include.foot') --}}
+    @include('include.foot')
 </body>
 
 </html>

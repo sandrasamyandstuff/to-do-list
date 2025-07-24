@@ -52,7 +52,8 @@ class Authcontroller extends Controller
            return redirect()->route('index');
         }
 
-        return redirect()->back();
+        return redirect()->back()->withErrors(
+            "wrong email or password");
     }
 
     public function logout()

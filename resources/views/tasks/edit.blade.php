@@ -21,7 +21,7 @@
 
     <button class='button' type="submit">Update</button>
 </form>
-    {{-- @include('include.foot') --}}
+     @include('include.foot')
 
 </body>
 </html>
